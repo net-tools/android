@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>nettools/android</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../../net-tools/ui/src/ui.css">
+    <link rel="stylesheet" href="../../../net-tools/ui/src/ui.yellow-theme.css" id="colorStyle">
+    <link rel="stylesheet" href="../src/android.css">
+    <link rel="stylesheet" href="../src/android.yellow-theme.css" id="androidColorStyle">
+    <link rel="stylesheet" href="android.css">
+   
+    <script src="../../../net-tools/js-core/src/js-core.js"></script>
+    <script src="../../../net-tools/ui/src/ui.js"></script>
+    <script src="../src/android.js"></script>
+    <script src="android.js"></script>
+
+    
+    <style>
+                
+        div.flex {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        div.flex > div {
+            width:45%;
+        }
+        
+        div.flex > div > h1 {
+            margin-top:0;
+        }
+        
+        @media screen and (max-width:1024px) {
+            div.flex > div {
+                width:100%;
+            }
+
+        }
+        
+        
+        div.mobileWidth {
+            border:1px solid black;
+            background-color:gainsboro;
+            width:320px;
+        }
+        
+        div#samplePopup p {
+            border:1px dotted gray;
+        }
+        
+    </style>
+    
+    
+    <script>
+    var test = {
+        
+        // editInPlace
+        edit : function(a)
+        {
+            nettools.android.ui.editInPlace({
+                    before : a.parentNode,
+                    type : 'text',
+                    value : 'me !',
+                    label : 'Value ?',
+                    required : true,
+                    submit : new nettools.jscore.SubmitHandlers.Callback({target : function(form, elements)
+							{
+								sample.output('Value is : ' + elements[0].value);
+							}
+						}),
+					cancel: function(form){
+						sample.output('Canceled !');
+					}
+                });
+        },
+        
+        
+        
+        // editInPlaceForm
+        form : function(a)
+        {
+            nettools.android.ui.editInPlaceForm({
+                        fields : {
+                            input1 : {label:'Value 1', type:'text', value:'default', required : true},
+                            input2 : {label:'Value 2', type:'date', value:'2017-06-17', required : true},
+                            input3 : {label:'Value 3', type:'select', value:'1', options:[{label:'valeur 1', value:'1'}, {label:'valeur 2', value:'2'}]},
+                            input4 : {label:'Value 4', type:'textarea', value:'default content'}
+                        },
+                
+                        submit : new nettools.jscore.SubmitHandlers.Callback({target:function(form, elements)
+								{
+									sample.output('input1=' + elements.input1.value + '\n' + 'input2=' + elements.input2.value + '\n' + 'input3=' + elements.input3.value + '\n' + 'input4=' + elements.input4.value);
+								}
+							})
+                    },
+                                          
+                    {
+                        before:a
+                    }
+            );
+        },
+        
+        
+        
+        // prompt
+        prompt : function(a)
+        {
+            nettools.android.ui.prompt(a.parentNode, 'Value ?', '0', function(value){sample.output('Number is : ' + value);}, 'number');
+        },
+        
+        
+        
+        notify : function(ok)
+        {
+            nettools.android.ui.notify('Notification message', ok);
+        }
+        
+    }
+    </script>
+    
+
+</head>
+
+<body>
+    Color theme : <select onChange="sample.colorChange(this);" id="colorSelect">
+    </select>
+    -
+    Dark theme : <select name="darkTheme" onChange="sample.darkTheme(this);" id="darkThemeSelect">
+        <option selected value="0">No</option>
+        <option value="1">Yes</option>
+    </select>
+    
+    <hr>
+
+    <div id="output"></div>
+    
+
+    <div class="flex">
+        <div class="sampleBox">
+            <h1>androidMenu</h1>
+            <div class="mobileWidth" id="sampleAndroidMenu" style="background-color: white;">   
+                <ul class="androidMenu">
+                    <li><a href="android.html">Reload</a></li>
+                    <li><a href="https://www.google.fr" target="_blank">Google.fr</a></li>
+                    <li><a href="javascript:void(0)" onclick="alert('ok !'); return false;">Reload page</a></li>
+                    <li><a href="android.html" data-highlight="1">Highlight</a></li>
+                </ul>
+            </div>
+             
+        </div>
+       
+
+        <div class="sampleBox">
+            <h1>androidMenuFlex</h1>
+            <div class="mobileWidth" id="sampleAndroidMenuFlex" style="background-color: white;">   
+                <ul class="androidMenu androidMenuFlex">
+                    <li><a href="android.html">12</a></li>
+                    <li><a href="https://www.google.fr" target="_blank">34</a></li>
+                    <li><a href="javascript:void(0)" onclick="alert('ok !'); return false;">56</a></li>
+                    <li><a href="android.html" data-highlight="1">78</a></li>
+                </ul>
+            </div>
+             
+        </div>
+       
+
+        <div class="sampleBox">
+            <h1>androidIconsMenuFlex</h1>
+            <div class="mobileWidth" id="sampleAndroidIconsMenuFlex" style="background-color: white;">   
+                <ul class="androidMenu androidMenuFlex androidMenuIcons">
+                    <li><a href="android.html"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAixJREFUeNqkkztvE0EUhc+ud72xA+z6GUQQQhGKhEJnEG3+AAUFPaKIhISAhoqCCImaBomWv4AEPaIjhsKCJhFFithx4vip2PuYF3dmE8dOB4w02qvde8797p1Z69WDtXsAruDfVsuRSi1vfvjyXkj2V8qM7WLz4fpjR0pltZu7EGLe4MkP4NfEM/GtfIx3tXMGGRdaSwbSLlYvg7FwLuHn8RC376Sq7/U6grI/9911c9BaR0hld1p74OcIlPTQ6/UwGAywVviEN43P5n3Vuob71edwiEBryUDaQaWKJJknUGKkK0ApBSkEarWUZmurjkvFIrLZHIQhEJIImoZg9OglrMYOMjdXIDfeGgO9KQfdbtfQCE7xwUFKIFKDTFCuICaCfmMbd19smEpP+S4+ihspAeOULFIzJnCxUICnCUhrWui0W+CcgUPh+GsD4bdt8NerZyIupjGnuHd4CMdx0xY4ufilMuI4xBEZsDgBAyUzZkRm83RLaoUTwYUggOfloLXawD5q7xsCRgZJHCOBBAvDGWxOydSGFGCJQL/TMQT8dAZ+qYQoCrGvDaKIDKhizM6wZ2bAE45F38fCwskMEsZdPVVNoCunBAJ8Ek6PUcwYaIIhnciYCLTWGY3DfGlpyRj8JgPlOHBKAXgYwbZt6tVDOJrAsiwTj0cRdL5uQWut9RX3GVVZ1UdX6YurpxepmV9Ga/HkJ3VbQLY5vWTXh5k9/STTHUsj/s/6I8AAKtiOR4vqGIsAAAAASUVORK5CYII=">Icon n1</a></li>
+                    <li><a href="android.html"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAixJREFUeNqkkztvE0EUhc+ud72xA+z6GUQQQhGKhEJnEG3+AAUFPaKIhISAhoqCCImaBomWv4AEPaIjhsKCJhFFithx4vip2PuYF3dmE8dOB4w02qvde8797p1Z69WDtXsAruDfVsuRSi1vfvjyXkj2V8qM7WLz4fpjR0pltZu7EGLe4MkP4NfEM/GtfIx3tXMGGRdaSwbSLlYvg7FwLuHn8RC376Sq7/U6grI/9911c9BaR0hld1p74OcIlPTQ6/UwGAywVviEN43P5n3Vuob71edwiEBryUDaQaWKJJknUGKkK0ApBSkEarWUZmurjkvFIrLZHIQhEJIImoZg9OglrMYOMjdXIDfeGgO9KQfdbtfQCE7xwUFKIFKDTFCuICaCfmMbd19smEpP+S4+ihspAeOULFIzJnCxUICnCUhrWui0W+CcgUPh+GsD4bdt8NerZyIupjGnuHd4CMdx0xY4ufilMuI4xBEZsDgBAyUzZkRm83RLaoUTwYUggOfloLXawD5q7xsCRgZJHCOBBAvDGWxOydSGFGCJQL/TMQT8dAZ+qYQoCrGvDaKIDKhizM6wZ2bAE45F38fCwskMEsZdPVVNoCunBAJ8Ek6PUcwYaIIhnciYCLTWGY3DfGlpyRj8JgPlOHBKAXgYwbZt6tVDOJrAsiwTj0cRdL5uQWut9RX3GVVZ1UdX6YurpxepmV9Ga/HkJ3VbQLY5vWTXh5k9/STTHUsj/s/6I8AAKtiOR4vqGIsAAAAASUVORK5CYII=">Icon flex n2</a></li>
+                </ul>
+            </div>
+             
+        </div>
+       
+
+        <div class="sampleBox">
+            <h1>editInPlace / prompt</h1>
+            <div class="mobileWidth" id="sampleEditInPlace">   
+                <p><a href="javascript:void(0)" onclick="test.edit(this); return false;">Edit here</a></p>
+                <p><a href="javascript:void(0)" onclick="test.edit(this); return false;">Edit other line here</a></p>
+                <p><a href="javascript:void(0)" onclick="test.prompt(this); return false;">Prompt here</a></p>
+            </div>
+             
+        </div>
+   
+       
+        <div class="sampleBox">
+            <h1>notify / downloadLink</h1>
+            <div class="mobileWidth" id="sampleNotifyDownload">   
+                <p><a href="javascript:void(0)" onclick="test.notify('ok'); return false;">Notify message here</a> ; <a href="javascript:void(0)" onclick="test.notify('ko'); return false;">KO notification message here</a></p>
+            </div>
+             
+        </div>
+   
+       
+        <div class="sampleBox">
+            <h1>editInPlaceForm</h1>
+            <div class="mobileWidth" id="sampleEditInPlaceForm">   
+                <p><a href="javascript:void(0)" onclick="test.form(this); return false;">Edit form here</a></p>
+            </div>
+             
+        </div>
+   
+    </div>
+
+</body>
+</html>
