@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>android fields</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../../net-tools/ui/src/ui.css">
+    <link rel="stylesheet" href="../../../net-tools/ui/src/ui.yellow-theme.css" id="colorStyle">
+    <link rel="stylesheet" href="../src/android.css">
+    <link rel="stylesheet" href="../src/android.yellow-theme.css" id="androidColorStyle">
+    <link rel="stylesheet" href="android.css">
+   
+    <script src="../../../net-tools/js-core/src/js-core.js"></script>
+    <script src="../../../net-tools/ui/src/ui.js"></script>
+    <script src="android.js"></script>
+
+    
+    <style>
+                
+        div.flex {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        div.flex > div {
+            width:45%;
+        }
+        
+        div.flex > div > h1 {
+            margin-top:0;
+        }
+        
+        @media screen and (max-width:1024px) {
+            div.flex > div {
+                width:100%;
+            }
+
+        }
+        
+        
+    </style>
+    
+</head>
+
+<body>
+    Color theme : <select onChange="sample.colorChange(this);" id="colorSelect">
+    </select>
+    -
+    Dark theme : <select name="darkTheme" onChange="sample.darkTheme(this);" id="darkThemeSelect">
+        <option selected value="0">No</option>
+        <option value="1">Yes</option>
+    </select>
+    
+    <hr>
+
+    <div id="output"></div>
+    
+
+    <div class="flex">
+        <div class="sampleBox">
+            <h1>Form</h1>
+            <div>   
+                <form class="uiForm">
+                    <p><label>Text : <input type="text"></label></p>
+                    <p><label>Select : <select><option>Value 1</option><option>Value 2</option></select></label></p>
+                    <p><label>File : <input type="file"></label></p>
+                    <p><label>Camera : <input type="file" accept="image/*" capture="camera"></label></p>
+                    <p><input type="submit"> - <input type="button" value="Dummy button"></p>
+                </form>
+            </div>
+             
+        </div>
+        
+
+    </div>
+
+</body>
+</html>
