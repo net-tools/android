@@ -1,0 +1,23 @@
+{
+    "name" : "net-tools/android",
+	
+    "description" : "Composer library for browser-side code on Android platform (JS, CSS)",
+	
+	"type": "library",
+	
+	"require" : {
+        "net-tools/js-core":"^1.0.0",
+		"net-tools/ui":"^1.0.0"
+	},
+	
+    "license" : "proprietary",
+
+    "authors": [
+        {
+            "name": "Pierre",
+            "email": "dev@nettools.ovh",
+            "role": "Developer"
+        }
+    ]
+
+}
