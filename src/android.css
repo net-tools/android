@@ -172,7 +172,7 @@ div.androidNotificationWindow a {
     color:black;
 }
 
-div.androidNotificationWindow[data-statut="ko"] {
+div.androidNotificationWindow[data-status="ko"] {
     border-color:crimson;
 	background-color: red;
 	color: white;

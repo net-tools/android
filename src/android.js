@@ -232,8 +232,8 @@ nettools.android.ui = (function(){
 		 *   - type : string ; input type ('text', 'date', etc.)
 		 *   - required : bool ; if set, the input is mandatory
 		 *   - regexp : RegExp ; if set, the input will be checked with this regular expression
-		 *   - onsubmit : function(string) ; validate data, must return an object litteral { statut:true/false, message:'', field:input_in_error}
-		 *   - onsubmitpromise : function(string) ; validate data, must return an Promise resolved with value { statut:true } or rejected with { statut:false, message:'', field:input_in_error}
+		 *   - onsubmit : function(string) ; validate data, must return an object litteral { status:true/false, message:'', field:input_in_error}
+		 *   - onsubmitpromise : function(string) ; validate data, must return an Promise resolved with value { status:true } or rejected with { status:false, message:'', field:input_in_error}
 		 *   - presubmit : function(HTMLInputElement) ; a custom function to make any updates to data before validation and submission (may be used to remove unwanted characters, etc.)
 		 *   - submit : nettools.jscore.SubmitHandlers.Handler ; an object responsible for handling form submission
 		 *   - cancel : function(HTMLForm) ; a callback called if form is canceled
@@ -347,13 +347,13 @@ nettools.android.ui = (function(){
          * Display error message on the window top 
          *
          * @param string message 
-         * @param string statut Message status (ok, ko)
+         * @param string status Message status (ok, ko)
          */
-		notify : function(message, statut)
+		notify : function(message, status)
 		{
 			var w = _getNotificationWindow();
 			w.querySelector('span').innerHTML = message;
-			w.setAttribute('data-statut', statut || 'ok');
+			w.setAttribute('data-status', status || 'ok');
             
             window.scrollTo(0,0);
 			
