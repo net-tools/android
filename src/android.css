@@ -142,6 +142,25 @@ form.FormBuilder span.FormBuilderField > input[type='reset']:last-of-type{
     margin-right:0;
 }
 
+/* awesomplete fix for android */
+form.FormBuilder div.awesomplete {
+	display : flex;
+	width: 100%;
+}
+
+form.FormBuilder div.awesomplete input[type='text'] {
+	flex-grow: 1;
+}
+
+form.FormBuilder div.awesomplete input[value='X'] {
+	margin-left:0.2em;
+}
+
+form.FormBuilder div.awesomplete ul[role='listbox'] {
+	top:100%;
+}
+
+
 
 
 
@@ -179,23 +198,3 @@ div.androidNotificationWindow[data-status="ko"] {
 }
 
 
-
-
-
-
-/* awesomplete fix for android */
-form.FormBuilder div.awesomplete {
-	display : flex;
-}
-
-form.FormBuilder div.awesomplete input[type='text'] {
-	flex-grow: 1;
-}
-
-form.FormBuilder div.awesomplete input[value='X'] {
-	margin-left:0.2em;
-}
-
-form.FormBuilder div.awesomplete ul[role='listbox'] {
-	top:100%;
-}
